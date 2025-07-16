@@ -1,5 +1,3 @@
-Sistema Bancário Simples desenvolvido em Python
-=======
 # Sistema Bancário Simples em Python
 ### Projeto proposto durante o Bootcamp "Santander 2025 - Back-End com Python"
 ---
@@ -65,4 +63,3 @@ Para deixar o sistema mais robusto e próximo de uma aplicação real, duas melh
 ---
 
 > Este projeto, apesar de simples, é um excelente exercício prático para quem está iniciando em Python e deseja aprender sobre estrutura de controle, laços de repetição, condições e manipulação de dados.
->>>>>>> b071cc1 (First Commit)
