@@ -116,7 +116,6 @@ Nesta versão, o projeto foi completamente reestruturado utilizando os conceitos
 
 ## 📁 Exemplo de Estrutura Atual:
 
-.
 ├── banco.py\
 ├── models\
 │ ├── conta.py\
