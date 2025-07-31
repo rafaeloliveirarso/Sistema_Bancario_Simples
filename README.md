@@ -117,13 +117,13 @@ Nesta versão, o projeto foi completamente reestruturado utilizando os conceitos
 ## 📁 Exemplo de Estrutura Atual:
 
 .
-├── banco.py
-├── models
-│ ├── conta.py
-│ ├── cliente.py
-│ ├── historico.py
-│ └── transacoes.py
-└── main.py
+├── banco.py\
+├── models\
+│ ├── conta.py\
+│ ├── cliente.py\
+│ ├── historico.py\
+│ └── transacoes.py\
+└── main.py\
 
 
 ---
