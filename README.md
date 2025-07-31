@@ -34,17 +34,14 @@ Para deixar o sistema mais robusto e próximo de uma aplicação real, duas melh
 
 ### 1. 🌐 Saldo Inicial Personalizado
 - Ao iniciar o programa, o usuário define um **saldo inicial** para sua conta.
-- Simula a experiência de criação de conta bancária com um valor inicial.
 
 ### 2. ⏰ Registro de Data e Hora nas Movimentações
 - Cada depósito ou saque registrado no extrato inclui a **data e hora exata** da operação.
-- Gera um extrato mais completo e profissional.
 
 ### Exemplo de Registro no Extrato:
-```
-15/07/2025 10:30:45 - Depósito: R$ 150.00
-15/07/2025 11:00:12 - Saque: R$ 50.00
-```
+    15/07/2025 10:30:45 - Depósito: R$ 150.00
+    15/07/2025 11:00:12 - Saque: R$ 50.00
+
 
 ---
 
@@ -53,44 +50,92 @@ Para deixar o sistema mais robusto e próximo de uma aplicação real, duas melh
 Nesta nova etapa, o sistema foi **refatorado e modularizado** com o objetivo de tornar o código mais organizado, reutilizável e próximo de um sistema bancário real.
 
 ### 🗂️ Funções Criadas:
-- **sacar:** Operação de saque com parâmetros nomeados.
-- **depositar:** Operação de depósito com parâmetros posicionais.
-- **exibir_extrato:** Exibição do extrato combinando parâmetros posicionais e nomeados.
-- **criar_usuario:** Cadastro de novo cliente com CPF único.
-- **criar_conta:** Criação de conta vinculada ao usuário existente.
-- **listar_contas:** Lista todas as contas cadastradas com informações do titular.
+- **sacar**
+- **depositar**
+- **exibir_extrato**
+- **criar_usuario**
+- **criar_conta**
+- **listar_contas**
 
 ### 📌 Regras Adicionais:
 - O CPF do usuário deve ser único.
-- O número da conta é sequencial e a agência é fixa (0001).
+- O número da conta é sequencial.
+- A agência é fixa: `0001`.
 - Um usuário pode ter múltiplas contas.
-
-### 📋 Exemplo de Uso:
-
-- Criar usuário informando nome, data de nascimento, CPF e endereço.
-- Criar conta informando o CPF do usuário.
-- Realizar depósitos, saques e consultar o extrato.
-- Listar todas as contas criadas no sistema.
 
 ---
 
-## ✅ Benefícios das Melhorias
+## 🧱 Versão 4: Refatoração Completa com Programação Orientada a Objetos (POO)
 
-- **Organização:** Código modular facilita manutenção e futuras melhorias.
-- **Controle:** Cadastro de usuários e contas permite controle sobre múltiplas contas.
-- **Histórico:** Extrato completo com movimentações detalhadas.
-- **Escalabilidade:** Sistema pronto para receber futuras implementações como transferências ou geração de relatórios.
+Nesta versão, o projeto foi completamente reestruturado utilizando os conceitos de **POO**, tornando o código mais escalável, organizado e alinhado com boas práticas de desenvolvimento.
+
+### 🔧 Classes Criadas:
+
+#### 📦 `Conta`
+- Atributos: `saldo`, `número`, `agência`, `cliente`, `histórico`
+- Métodos: `sacar()`, `depositar()`
+
+#### 🏦 `ContaCorrente` (herda de `Conta`)
+- Atributos: `limite`, `limite_saques`, `quantidade_saques`
+
+#### 🧾 `Historico`
+- Armazena todas as transações realizadas.
+- Método: `adicionar_transacao(transacao)`
+
+#### 🔁 `Transacao` (classe abstrata)
+- Subclasses: `Saque`, `Deposito`
+- Método abstrato: `registrar(conta)`
+
+#### 👤 `Cliente`
+- Atributo: `endereco`
+- Método: `adicionar_conta(conta)`
+
+#### 🧍 `PessoaFisica` (herda de `Cliente`)
+- Atributos: `nome`, `cpf`, `data_nascimento`
+
+---
+
+### 🔄 Operações do Menu Atualizadas:
+- **[d] Depositar** → Utiliza a classe `Deposito`
+- **[s] Sacar** → Utiliza a classe `Saque` com controle de limite e quantidade
+- **[e] Extrato** → Usa a classe `Historico` da conta
+- **[nu] Novo usuário** → Cria instância de `PessoaFisica`
+- **[nc] Nova conta** → Cria `ContaCorrente` vinculada ao cliente
+- **[lc] Listar contas** → Mostra contas com nome e CPF do titular
+
+---
+
+## ✅ Benefícios da Versão 4 com POO
+
+- **Encapsulamento:** A lógica foi distribuída entre as classes corretas.
+- **Reutilização:** Métodos comuns foram herdados de superclasses.
+- **Extensibilidade:** Fácil adicionar novos tipos de contas, validações, regras e integrações.
+- **Organização:** A separação clara de responsabilidades melhora a legibilidade e manutenção.
+
+---
+
+## 📁 Exemplo de Estrutura Atual:
+
+.
+├── banco.py
+├── models
+│ ├── conta.py
+│ ├── cliente.py
+│ ├── historico.py
+│ └── transacoes.py
+└── main.py
+
 
 ---
 
 ## 🚀 Possíveis Melhorias Futuras
 
-- Implementação de transferências entre contas.
-- Cálculo de rendimento sobre o saldo (simulando poupança).
-- Limitação de saques diários baseada em data.
-- Geração de relatório de extrato em arquivo de texto ou PDF.
-- Autenticação de usuários.
+- Interface gráfica com Tkinter ou PyQT
+- Banco de dados para persistência de clientes e contas
+- Integração com API REST (Flask ou FastAPI)
+- Autenticação de usuário com login/senha
+- Testes unitários com pytest
 
 ---
 
-> Este projeto, apesar de simples, é um excelente exercício prático para quem está iniciando em Python e deseja aprender sobre estrutura de controle, funções, parâmetros, listas e manipulação de dados.
+> Este projeto evoluiu de um script simples até um sistema orientado a objetos, sendo ideal para quem deseja aprender desde os fundamentos até conceitos mais avançados de Python e POO.
